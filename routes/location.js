@@ -7,6 +7,29 @@ import getDistritos from "../controllers/location/getDistritos.js";
 
 const router = Router();
 
+/*
+@swagger
+tags:
+    - name: Location
+        description: Location endpoints
+*/
+
+/**
+ * @swagger
+ * /location/departamentos:
+ *   get:
+ *     summary: Obtener lista de departamentos.
+ *     tags: [Location]
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ */
 router.get('/departamentos', async (req, res) => {
     try {
         const departamentos = await getDepartamentos();
@@ -15,6 +38,30 @@ router.get('/departamentos', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+
+/**
+ * @swagger
+ * /location/provincias/{departamento}:
+ *   get:
+ *     summary: Obtener lista de provincias de un departamento.
+ *     tags: [Location]
+ *     parameters:
+ *       - in: path
+ *         name: departamento
+ *         required: true
+ *         description: Nombre del departamento.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ */
 
 router.get('/provincias/:departamento', async (req, res) => {
     try {
@@ -25,6 +72,41 @@ router.get('/provincias/:departamento', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+
+/**
+ * @swagger
+ * /location/distritos/{departamento}/{provincia}:
+ *   get:
+ *     summary: Obtener lista de distritos de un departamento y provincia.
+ *     tags: [Location]
+ *     parameters:
+ *       - in: path
+ *         name: departamento
+ *         required: true
+ *         description: Nombre del departamento.
+ *         schema:
+ *           type: string
+ *       - in: path
+ *         name: provincia
+ *         required: true
+ *         description: Nombre de la provincia.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   ubigeo:
+ *                     type: string
+ *                   distrito:
+ *                     type: string
+ */
 
 router.get('/distritos/:departamento/:provincia', async (req, res) => {
     try {
