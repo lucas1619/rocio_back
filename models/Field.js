@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import database from '../database/index.js';
+import Location from './Location.js';
 
 const Field = database.define('Field', {
   id: {
@@ -32,6 +33,9 @@ const Field = database.define('Field', {
   },
 }, {
   tableName: 'fields', // nombre de la tabla en la base de datos
+  timestamps: false,
 });
+
+Field.belongsTo(Location, { foreignKey: 'location_id', as: 'location' });
 
 export default Field;

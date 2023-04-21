@@ -28,6 +28,7 @@ const Location = database.define('Location', {
   },
 }, {
   tableName: 'locations',
+  timestamps: false,
 });
 
 export default Location;

@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import userRoutes from './routes/user.js';
 import locationRoutes from './routes/location.js';
+import fieldRoutes from './routes/field.js';
 
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc'; 
@@ -27,6 +28,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/user', userRoutes);
 app.use('/location', locationRoutes);
+app.use('/field', fieldRoutes);
 
 app.get('/', (req, res) => {
   const data = {
