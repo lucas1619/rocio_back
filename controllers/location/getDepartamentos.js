@@ -1,4 +1,4 @@
-import Location from "../../models/Location";
+import Location from "../../models/Location.js";
 
 const getDepartamentos = () => {
     return Location.findAll({
