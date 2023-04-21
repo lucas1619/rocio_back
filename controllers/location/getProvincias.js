@@ -1,11 +1,12 @@
 import Location from "../../models/Location.js";
 
-const getProvincias = (departamento, provincia) => {
+const getProvincias = (departamento) => {   
     return Location.findAll({
-        attributes: ['distrito', 'ubigeo'],
-        where: { departamento: departamento, provincia: provincia },
-        order: [['distrito', 'ASC']]
-    })      
+        attributes: ['provincia'],
+        where: { departamento: departamento },
+        group: ['provincia'],
+        order: [['provincia', 'ASC']]
+    })
 };
 
 export default getProvincias;

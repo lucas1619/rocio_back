@@ -18,6 +18,7 @@ router.get('/departamentos', async (req, res) => {
 
 router.get('/provincias/:departamento', async (req, res) => {
     try {
+        console.log(req.params.departamento);
         const provincias = await getProvincias(req.params.departamento);
         res.json(provincias);
     } catch (error) {
@@ -25,9 +26,9 @@ router.get('/provincias/:departamento', async (req, res) => {
     }
 });
 
-router.get('/distritos/:provincia', async (req, res) => {
+router.get('/distritos/:departamento/:provincia', async (req, res) => {
     try {
-        const distritos = await getDistritos(req.params.provincia);
+        const distritos = await getDistritos(req.params.departamento, req.params.provincia);
         res.json(distritos);
     } catch (error) {
         res.status(400).json({ error: error.message });
