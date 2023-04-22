@@ -8,12 +8,13 @@ import login from "../controllers/user/login.js";
 import register from "../controllers/user/register.js";
 
 const router = Router();
-/*
-@swagger
-tags:
-    - name: User
-        description: User endpoints
-*/
+
+/**
+ * @swagger
+ * tags:
+ *   name: User
+ *   description: API for managing users
+ */
 
 /**
  * @swagger

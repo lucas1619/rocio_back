@@ -10,12 +10,12 @@ import create_field_schema from "../schemas/field/create_field_schema.js";
 
 const router = Router();
 
-/*
-@swagger
-tags:
-    - name: Field
-        description: Field endpoints
-*/
+/**
+ * @swagger
+ * tags:
+ *   name: Field
+ *   description: API for managing fields
+ */
 
 /**
  * @swagger

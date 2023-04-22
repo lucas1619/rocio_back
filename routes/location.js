@@ -7,12 +7,13 @@ import getDistritos from "../controllers/location/getDistritos.js";
 
 const router = Router();
 
-/*
-@swagger
-tags:
-    - name: Location
-        description: Location endpoints
-*/
+
+/**
+ * @swagger
+ * tags:
+ *   name: Location
+ *   description: API for managing Locations
+ */
 
 /**
  * @swagger
