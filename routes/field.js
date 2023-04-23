@@ -147,6 +147,10 @@ router.post('/', async (req, res) => {
 router.get('/:user_id/all', async (req, res) => {
     try {
         const fields = await getFields(req.params.user_id);
+        for (let field of fields) {
+            const { latitude, longitude } = field.dataValues.location;
+            field.dataValues.weather = await getWeather(latitude, longitude);
+        }
         res.json(fields);
     } catch (error) {
         res.status(400).json({ error: error.message });
