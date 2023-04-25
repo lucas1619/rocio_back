@@ -4,11 +4,47 @@ import userRoutes from './routes/user.js';
 import locationRoutes from './routes/location.js';
 import fieldRoutes from './routes/field.js';
 import cropRoutes from './routes/crop.js';
-
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc'; 
 
+import http from 'http';
+
+import { WebSocketServer } from 'ws'
+
+
+
+
 const app = express();
+const server = http.createServer(app);
+
+
+const wss = new WebSocketServer({ server: server });
+wss.on('connection', (ws) => {
+  console.log('Nuevo cliente conectado');
+  ws.on('message', (data) => {
+    const message = JSON.parse(data);
+    if (message.event === 'measureFromIot') {
+      // enviar a todos los clientes conectados menos al que envió el mensaje
+      wss.clients.forEach((client) => {
+        if (client !== ws) {
+          client.send(JSON.stringify({
+            event: 'updateMeasureFromIot',
+            data: message.data
+          }));
+        }
+      });
+    }
+  });
+});
+
+// Permitir todas las conexiones
+wss.on('headers', (headers, req) => {
+  headers.push('Access-Control-Allow-Origin: *');
+  headers.push('Access-Control-Allow-Headers: Content-Type');
+});
+
+
+
 app.use(bodyParser.json());
 
 
@@ -39,6 +75,7 @@ app.get('/', (req, res) => {
   res.json(data);
 });
 
-app.listen(3000, () => {
+
+server.listen(3000, () => {
   console.log('API iniciada en el puerto 3000');
 });
