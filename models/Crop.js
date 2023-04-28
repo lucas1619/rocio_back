@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import database from '../database/index.js';
 import Field from './Field.js';
 
-const Crop  = database.define('Field', {
+const Crop  = database.define('Crop', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
