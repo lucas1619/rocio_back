@@ -13,7 +13,6 @@ const getIrrigationByCrop = (month, year, cropId) => {
             crop_id: cropId
         },
         order: [['start_date', 'ASC']],
-        include: [{model: Crop,as: 'crops',}]
     })
 };
 
