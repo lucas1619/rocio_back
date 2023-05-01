@@ -5,6 +5,7 @@ import locationRoutes from './routes/location.js';
 import fieldRoutes from './routes/field.js';
 import cropRoutes from './routes/crop.js';
 import irrigationRoutes from './routes/irrigation.js';
+import deviceRoutes from './routes/device.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc'; 
 
@@ -69,6 +70,7 @@ app.use('/location', locationRoutes);
 app.use('/field', fieldRoutes);
 app.use('/crop', cropRoutes);
 app.use('/irrigation', irrigationRoutes);
+app.use('/device', deviceRoutes);
 
 app.get('/', (req, res) => {
   const data = {
