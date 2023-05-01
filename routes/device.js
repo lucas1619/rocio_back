@@ -4,6 +4,7 @@ import getUnlinkedDevices from "../controllers/devices/getUnlinkedDevices.js";
 import linkDevice from "../controllers/devices/linkDevice.js";
 import getDeviceByCropAndType from "../controllers/devices/getDeviceByCropAndType.js";
 import createDevice from "../controllers/devices/createDevice.js";
+import unlinkDevice from "../controllers/devices/unlinkDevice.js";
 
 
 const router = Router();
@@ -64,4 +65,16 @@ router.post("/createDevice", async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+
+router.post("/unlinkDevice", async (req, res) => {
+    try {
+        const device_id = req.body.device_id;
+        const device = await unlinkDevice(device_id);
+        res.json(device);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ error: error.message });
+    }
+});
+
 export default router;
