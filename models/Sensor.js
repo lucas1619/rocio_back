@@ -26,7 +26,7 @@ const Devices  = database.define('Devices', {
     allowNull: true
   },
 }, {
-  tableName: 'sensors', // nombre de la tabla en la base de datos
+  tableName: 'devices', // nombre de la tabla en la base de datos
   timestamps: false,
 });
 
