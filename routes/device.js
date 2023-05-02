@@ -20,9 +20,10 @@ router.get("/getDeviceByCrop/:crop_id", async (req, res) => {
     }
 });
 
-router.get("/getUnlinkedDevices", async (req, res) => {
+router.get("/getUnlinkedDevices/:device_type", async (req, res) => {
     try {
-        const devices = await getUnlinkedDevices();
+        const device_type = req.params.device_type;
+        const devices = await getUnlinkedDevices(device_type);
         res.json(devices);
     } catch (error) {
         console.log(error);
