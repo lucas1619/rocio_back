@@ -193,7 +193,7 @@ router.get('/:fieldId/all', async (req, res) => {
     }
 });
 
-router.post(':cropId/irrigation/stop', async (req, res) => {
+router.post('/:cropId/irrigation/stop', async (req, res) => {
     try {
         const { cropId } = req.params;
         await stopIrrigation(cropId);

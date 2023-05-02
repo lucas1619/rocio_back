@@ -12,7 +12,7 @@ const stopIrrigation = async (cropId) => {
     });
 
     for(let i = 0; i < irrigations.length; i++) {
-        irrigations[i].end_time = utcDateTime;
+        irrigations[i].end_date = utcDateTime;
         await irrigations[i].save();
     }
 }
