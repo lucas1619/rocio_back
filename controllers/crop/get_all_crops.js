@@ -4,7 +4,7 @@ const getAllCrops = (fieldId) => {
     return Crop.findAll({
         where: {
             field_id: fieldId
-        }
+        },
     })
 };
 

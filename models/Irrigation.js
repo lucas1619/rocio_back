@@ -14,7 +14,7 @@ const Irrigation  = database.define('Irrigation', {
   },
   end_date: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: true
   },
   crop_id: {
     type: DataTypes.INTEGER,

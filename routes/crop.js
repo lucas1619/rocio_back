@@ -7,6 +7,7 @@ import getCrop from "../controllers/crop/get_crop.js";
 import getAllCrops from "../controllers/crop/get_all_crops.js";
 
 import create_crop_schema from "../schemas/crop/create_crop_schema.js";
+import isCropIrrigating from "../controllers/irrigation/is_crop_irrigating.js";
 
 const router = Router();
 
@@ -181,6 +182,10 @@ router.get('/:id', async (req, res) => {
 router.get('/:fieldId/all', async (req, res) => {
     try {
         const crops = await getAllCrops(req.params.fieldId);
+        // add isIrrigating field
+        for(let i = 0; i < crops.length; i++) {
+            crops[i].dataValues.is_irrigating = await isCropIrrigating(crops[i].dataValues.id);
+        }
         res.json(crops);
     } catch (error) {
         res.status(400).json({ error: error.message });
