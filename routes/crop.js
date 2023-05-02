@@ -8,6 +8,7 @@ import getAllCrops from "../controllers/crop/get_all_crops.js";
 
 import create_crop_schema from "../schemas/crop/create_crop_schema.js";
 import isCropIrrigating from "../controllers/irrigation/is_crop_irrigating.js";
+import stopIrrigation from "../controllers/irrigation/stop_irrigation.js";
 
 const router = Router();
 
@@ -187,6 +188,16 @@ router.get('/:fieldId/all', async (req, res) => {
             crops[i].dataValues.is_irrigating = await isCropIrrigating(crops[i].dataValues.id);
         }
         res.json(crops);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+router.post(':cropId/irrigation/stop', async (req, res) => {
+    try {
+        const { cropId } = req.params;
+        await stopIrrigation(cropId);
+        res.json({ message: "Irrigation stopped" });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
