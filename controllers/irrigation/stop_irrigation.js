@@ -4,8 +4,7 @@ const stopIrrigation = async (cropId) => {
     const limaTimeZone = 'America/Lima';
     const currentDateTime = new Date().toLocaleString('en-US', {timeZone: limaTimeZone});
     const utcDateTime = new Date(currentDateTime).toUTCString();
-
-
+    console.log(utcDateTime);
     return Irrigation.update(
         {
             end_date: utcDateTime,
