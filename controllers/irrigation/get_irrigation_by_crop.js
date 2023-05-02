@@ -10,7 +10,10 @@ const getIrrigationByCrop = (month, year, cropId) => {
                 [Op.gte]: new Date(year, month - 1, 1),
                 [Op.lt]: new Date(year, month, 1)
             },
-            crop_id: cropId
+            crop_id: cropId,
+            end_date: {
+                [Op.ne]: null
+            }
         },
         order: [['start_date', 'ASC']],
     })
