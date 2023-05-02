@@ -7,7 +7,7 @@ const stopIrrigation = async (cropId) => {
     const irrigations = await Irrigation.findAll({
         where: {
             crop_id: cropId,
-            end_time: null
+            end_date: null
         }
     });
 
