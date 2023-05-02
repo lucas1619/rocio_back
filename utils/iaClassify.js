@@ -1,21 +1,33 @@
 import fetch from "node-fetch";
 
 const crop_types = {
-    'Ornamentales': 1,
-    'Alimentarios': 2,
-    'Textiles': 3
+    'Arroz': 1,
+    'Algodon': 2,
+    'Canamo': 3,
+    'Tomate': 4,
+    'Seda': 5,
+    'Rabanito': 6,
+    'Helechos': 7,
+    'Maiz': 8,
+    'Lino': 9,
+    'Rosas': 10,
+    'Hortensias': 11,
+    'Orquideas': 12
 }
 
 const soil_types = {
     'Arcilloso': 1,
-    'Franco': 2,
-    'Arenoso': 3
+    'Franco arenoso': 2,
+    'Franco': 3,
+    'Franco arcilloso': 4,
+    'Arcilloso Arenoso': 5,
+    'Arenoso': 6
 }
 
 const crop_phases = {
-    'Germinacion': 1,
+    'Maduracion': 1,
     'Ahijamiento': 2,
-    'Maduracion': 3
+    'Germinacion': 3
 }
 
 const classifyIrrigationFrequency = async (crop_type, soil_type, crop_phase) => {
